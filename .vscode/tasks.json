@@ -1,0 +1,165 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558 
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "g++ build active file",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "/usr/bin",
+                "statusbar":{
+                    "hide":true
+                }
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "build blindfolded",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-g",
+                "${workspaceFolder}/blindfolded/blindfolded.cpp",
+                "-o",
+                "${workspaceFolder}/blindfolded/blindfolded"
+            ],
+            "options": {
+                "cwd": "/usr/bin",
+                "statusbar": {
+                    "hide":true,
+                    "label":"build blindfolded"
+                }
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "build expogo",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-g",
+                "${workspaceFolder}/expogo/expogo.cpp",
+                "-o",
+                "${workspaceFolder}/expogo/expogo"
+            ],
+            "options": {
+                "cwd": "/usr/bin",
+                "statusbar": {
+                    "hide":true,
+                    "label":"build expogo"
+                }
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "build join",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-g",
+                "${workspaceFolder}/join/join.cpp",
+                "-o",
+                "${workspaceFolder}/join/join"
+            ],
+            "options": {
+                "cwd": "/usr/bin",
+                "statusbar": {
+                    "hide":true,
+                    "label":"build join"
+                }
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "expogo",
+            "command": "${workspaceFolder}/expogo/expogo",
+            "args": [
+                "<",
+                "${workspaceFolder}/expogo/input"
+            ],
+            "options": {
+                "cwd": "/usr/bin",
+                "statusbar": {
+                    "hide":false,
+                    "label":"expogo"
+                }
+            },
+            "problemMatcher": [
+            ],
+            "group": "test",
+            "dependsOn": ["build expogo"]
+        },
+        {
+            "type": "shell",
+            "label": "blindfolded",
+            "command": "${workspaceFolder}/blindfolded/blindfolded",
+            "args": [
+                "<",
+                "${workspaceFolder}/blindfolded/input"
+            ],
+            "options": {
+                "cwd": "/usr/bin",
+                "statusbar": {
+                    "hide":false,
+                    "label":"blindfolded"
+                }
+            },
+            "group": "test",
+            "dependsOn": ["build blindfolded"]
+        },
+        {
+            "type": "shell",
+            "label": "join",
+            "command": "${workspaceFolder}/join/join",
+            "args": [
+                "<",
+                "${workspaceFolder}/join/input"
+            ],
+            "options": {
+                "cwd": "/usr/bin",
+                "statusbar": {
+                    "hide":false,
+                    "label":"join"
+                }
+            },
+            "group": "test",
+            "dependsOn": ["build join"]
+        },
+        {
+            "type": "shell",
+            "label": "echo",
+            "command": "echo ${file}",
+            "args": [
+            ],
+            "options": {
+                "cwd": "/usr/bin",
+                "statusbar": {
+                    "hide":true,
+                    "label":"echo"
+                }
+            },
+            "group": "test",
+        }
+    ]
+}
